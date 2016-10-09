@@ -75,9 +75,7 @@
             <button type="button" data-toggle="tooltip" data-placement="left" title="<?php echo $product['description']; ?>" class="info"><i class="fa fa-info"></i></button>
       
             <div class="flybar">  
-            <div class="flybar-quickview">
-            <a class="btn btn-default quickview" href="<?php echo $product['quickview']; ?>"><?php echo $text_quickview; ?></a>
-            </div>
+           
             <div class="flybar-cart">
             <button type="button" onclick="cart.add('<?php echo $product['product_id']; ?>');" class="btn btn-primary"><?php echo $button_cart; ?></button>  
             </div>   
@@ -197,9 +195,7 @@ $('#slider-latest-<?php echo $module; ?>').owlCarousel({
             <button type="button" data-toggle="tooltip" data-placement="left" title="<?php echo $product['description']; ?>" class="info"><i class="fa fa-info"></i></button>
       
             <div class="flybar">  
-            <div class="flybar-quickview">
-            <a class="btn btn-default quickview" href="<?php echo $product['quickview']; ?>"><?php echo $text_quickview; ?></a>
-            </div>
+           
             <div class="flybar-cart">
             <button type="button" onclick="cart.add('<?php echo $product['product_id']; ?>');" class="btn btn-primary"><?php echo $button_cart; ?></button>  
             </div>   
@@ -318,9 +314,7 @@ $('#slider-bestseller-<?php echo $module; ?>').owlCarousel({
             <button type="button" data-toggle="tooltip" data-placement="left" title="<?php echo $product['description']; ?>" class="info"><i class="fa fa-info"></i></button>
       
             <div class="flybar">  
-            <div class="flybar-quickview">
-            <a class="btn btn-default quickview" href="<?php echo $product['quickview']; ?>"><?php echo $text_quickview; ?></a>
-            </div>
+            
             <div class="flybar-cart">
             <button type="button" onclick="cart.add('<?php echo $product['product_id']; ?>');" class="btn btn-primary"><?php echo $button_cart; ?></button>  
             </div>   
@@ -440,9 +434,7 @@ $('#slider-featured-<?php echo $module; ?>').owlCarousel({
             <button type="button" data-toggle="tooltip" data-placement="left" title="<?php echo $product['description']; ?>" class="info"><i class="fa fa-info"></i></button>
       
             <div class="flybar">  
-            <div class="flybar-quickview">
-            <a class="btn btn-default quickview" href="<?php echo $product['quickview']; ?>"><?php echo $text_quickview; ?></a>
-            </div>
+           
             <div class="flybar-cart">
             <button type="button" onclick="cart.add('<?php echo $product['product_id']; ?>');" class="btn btn-primary"><?php echo $button_cart; ?></button>  
             </div>   
@@ -561,9 +553,7 @@ $('#slider-special-<?php echo $module; ?>').owlCarousel({
             <button type="button" data-toggle="tooltip" data-placement="left" title="<?php echo $product['description']; ?>" class="info"><i class="fa fa-info"></i></button>
       
             <div class="flybar">  
-            <div class="flybar-quickview">
-            <a class="btn btn-default quickview" href="<?php echo $product['quickview']; ?>"><?php echo $text_quickview; ?></a>
-            </div>
+          
             <div class="flybar-cart">
             <button type="button" onclick="cart.add('<?php echo $product['product_id']; ?>');" class="btn btn-primary"><?php echo $button_cart; ?></button>  
             </div>   
