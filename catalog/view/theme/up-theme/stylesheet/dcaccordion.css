@@ -1,0 +1,13 @@
+.accordion {padding: 0; margin-bottom: 0;}
+.accordion li ul {padding-left: 15px;}
+.accordion li.dcjq-parent-li, .accordion li.dcjq-parent-li ul li {position: relative; list-style: none;}
+.accordion li.dcjq-parent-li ul li:last-child {margin-bottom: 5px;}
+.accordion li.dcjq-parent-li ul li a { padding: 5px 30px 15px;}
+.accordion li > a + .dcjq-icon {float: right; width: 50px; height: 50px; line-height: 50px; position: absolute; top: 0; right: 0; background: none; cursor:pointer; transition: all 0.2s ease-in 0s;}
+.accordion li.dcjq-parent-li .dcjq-icon:hover {background: none;}
+.accordion li.dcjq-parent-li > a + .dcjq-icon {display: block; width: 50px; height: 50px; line-height: 50px; text-align: center; background: none;}
+.accordion li.dcjq-parent-li > a.active + .dcjq-icon {display: none; width: 50px; height: 50px; line-height: 50px; background: none;}
+.accordion li.dcjq-parent-li > a.active + .dcjq-icon:hover {background: none;}
+.accordion li > a + .dcjq-icon {display: none;}
+.accordion li > a.active + .dcjq-icon {display: none;}
+.panel-default.panel-category .accordion li.dcjq-parent-li > a.list-group-item{border: none!important;}

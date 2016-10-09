@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+	<id>Addist framework [by addist.ru]</id>
+	<version>0.2</version>
+	<vqmver>2.X</vqmver>
+	<author>addist.ru</author>
+
+	<file name="system/engine/front.php">
+		<operation error="skip">
+			<search position="before"><![CDATA[$this->registry = $registry;]]></search>
+			<add><![CDATA[
+    	    require_once(DIR_SYSTEM.'addist/startup.php');
+            ]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[if (method_exists($action, 'getFile'))]]></search>
+			<add><![CDATA[if (method_exists($action, 'getArgs'))]]></add>
+		</operation>
+	</file>
+
+	<file name="system/engine/action.php">
+		<operation error="skip">
+			<ignoreif>function getClass</ignoreif>
+			<search position="before"><![CDATA[public function __construct]]></search>
+			<add><![CDATA[
+        	public function getClass() {
+        		return isset($this->class) ? $this->class : 'controller' . strtolower(preg_replace('/[^a-zA-Z0-9]/', '', $this->route));
+        	}
+            ]]></add>
+		</operation>
+		<operation error="skip">
+			<ignoreif>function getFile</ignoreif>
+			<search position="before"><![CDATA[public function __construct]]></search>
+			<add><![CDATA[
+        	public function getFile() {
+        		return isset($this->file) ? $this->file : DIR_APPLICATION . 'controller/' . $this->route . '.php';
+        	}
+            ]]></add>
+		</operation>
+		<operation error="skip">
+			<ignoreif>function getMethod</ignoreif>
+			<search position="before"><![CDATA[public function __construct]]></search>
+			<add><![CDATA[
+        	public function getMethod() {
+        		return $this->method;
+        	}
+            ]]></add>
+		</operation>
+	</file>
+
+	<file name="system/library/db.php">
+		<operation error="skip">
+			<search position="replace"><![CDATA[function query($sql)]]></search>
+			<add><![CDATA[function query($sql, $direct = false)]]></add>
+		</operation>
+	</file>
+</modification>

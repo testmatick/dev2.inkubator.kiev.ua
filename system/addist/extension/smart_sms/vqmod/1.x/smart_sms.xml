@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <id>Smart SMS - SMS Alerts v0.1.3.3.4 [by addist.ru]</id>
+    <version>0.1.3.3.4</version>
+    <vqmver>2.4</vqmver>
+    <author>Mumtoz Qodirov [addist.ru]</author>
+    
+    <file name="system/engine/front.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->registry = $registry;]]></search>
+            <add><![CDATA[
+            if (!class_exists('SmartSMS'))
+            {
+                require_once(DIR_SYSTEM.'library/smart_sms.php');
+                $registry->set('smart_sms',new SmartSMS($registry));
+            }
+            ]]></add>
+        </operation>
+    </file>
+    
+    <!-- customer model -->
+    <file name="catalog/model/account/customer.php">
+        <operation error="skip">
+            <search position="replace" regex="true"><![CDATA[#public function addCustomer\((.*)\)#]]></search>
+            <add><![CDATA[
+            public function addCustomer(${1}) {
+                $this->addCustomer_smart_sms(${1});
+                if ($this->config->get('smart_sms_status'))
+                {
+                    $this->smart_sms->customerAdded(${1});
+                }
+            }
+            
+            public function addCustomer_smart_sms(${1})
+            ]]></add>
+        </operation>
+    </file>
+    
+    <!-- new order -->
+    <file name="catalog/model/checkout/order.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[// Admin Alert Mail]]></search>
+            <add><![CDATA[
+            // Admin Alert Mail
+            if ($order_status_id)
+            {
+                $this->smart_sms->orderAdded($order_id,$order_status_id);
+            }
+            ]]></add>
+        </operation>
+    </file>
+    
+    <!-- order update -->
+    <file name="admin/model/sale/order.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[if ($data['notify']) {]]></search>
+            <add><![CDATA[
+            if ($data['notify'] || !$this->config->get('smart_sms_use_checkbox')) {
+                if ($data['order_status_id'])
+                {
+                    $this->smart_sms->orderUpdated($order_id,$data['order_status_id'],$data['comment']);
+                }
+            }
+            if ($data['notify']) {
+            ]]></add>
+        </operation>
+    </file>
+    
+    <!-- admin order create -->
+    <file name="admin/model/sale/order.php">
+        <operation error="skip">
+            <search position="replace" regex="true"><![CDATA[#public function addOrder\((.*)\)#]]></search>
+            <add><![CDATA[
+            public function addOrder(${1}) {
+                $order_id = $this->addOrder_smart_sms(${1});
+                if ($this->config->get('smart_sms_status'))
+                {
+                    $this->smart_sms->orderAdded($order_id,$data['order_status_id']);
+                }
+                return $order_id;
+            }
+            
+            public function addOrder_smart_sms(${1})
+            ]]></add>
+        </operation>
+    </file>
+</modification>

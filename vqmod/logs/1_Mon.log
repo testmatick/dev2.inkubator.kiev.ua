@@ -1,0 +1,15 @@
+---------- Date: 2016-09-26 11:33:17 ~ IP : 88.135.193.118 ----------
+REQUEST URI : /
+MOD DETAILS:
+   modFile   : /home/estre296/domains/inkubator.kiev.ua/public_html/vqmod/xml/ML_seo_keywords.xml
+   id        : Multi Language SEO Keywords
+   version   : 1.0.0
+   vqmver    : 2.1.5
+   author    : ovife21
+
+File Name    : catalog/controller/common/language.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->response->redirect($this->request->post['redirect']);
+
+----------------------------------------------------------------------
+
+

@@ -1,0 +1,210 @@
+.btn-ordercart {
+	color: #ffffff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	background-color: #5bb75b;
+	border-color: #5bb75b;
+}
+.btn-ordercart:hover, .btn-ordercart:active{
+	background-color: #35A035;
+	color:#fff;
+}
+.error_input {
+	border:1px solid red !important;
+	box-shadow: 0 1px 1px rgba(255, 0, 0, 0.075) inset !important;
+	
+}
+.error_input:-moz-placeholder{color:red !important;}
+.error_input::-moz-placeholder{color:red !important;opacity:1}
+.error_input:-ms-input-placeholder{color:red !important;}
+.error_input::-webkit-input-placeholder{color:red !important;}
+#popup-quickorder .price-new {
+  color: red;
+  font-size: 14px;
+}
+
+#popup-quickorder .price-old {
+  color: #333;
+  font-size: 12px;
+  text-decoration:line-through;
+}
+#popup-quickorder {
+  background: #fff none repeat scroll 0 0;
+  margin: 0 auto;
+  max-width: 650px;
+  min-height: 100px;
+  position: relative;
+  width: 90%;
+}
+#popup-quickorder .popup-heading {
+  background: transparent none repeat scroll 0 0;
+  border-bottom: 1px solid #dfe4eb;
+  color: #1c1c1c;
+  font-size: 21px;
+  line-height: 40px;
+  min-height: 40px;
+  overflow: hidden;
+  padding: 0 25px;
+  position: relative;
+  text-align: left;
+}
+#popup-quickorder .popup-footer {
+  background-color: #f2f6f9;
+  border-top: 1px solid #dfe4eb;
+  display: inline-block;
+  height: 100%;
+  padding: 17px 25px;
+  position: relative;
+  vertical-align: bottom;
+  width: 100%;
+}
+#popup-quickorder .popup-footer #quickorder_btn {
+	text-align:center;
+}
+#popup-quickorder .mfp-close {
+  background:#E8F6FC;
+  border: 0 none;
+  cursor: pointer !important;
+  height: 40px;
+  outline: medium none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 45px;
+  z-index: 2;
+}
+
+
+#popup-quickorder .price-quantity-quickorder .price_fast{
+	font-size:16px;
+	font-weight:500;
+	background:#f1f1f1;
+	border:1px solid #d9d9d9;
+	padding:5px;
+	margin-top:3px;
+	margin-bottom:3px;
+	display:inline-block;
+	vertical-align: middle;
+}
+#popup-quickorder .price-quantity-quickorder .special_fast {
+	font-size:16px;
+	font-weight:500;
+	background:#f1f1f1;
+	border:1px solid #d9d9d9;
+	padding:5px;
+	margin-top:3px;
+	margin-bottom:3px;
+	display:inline-block;
+	vertical-align: middle;
+}
+#popup-quickorder .price-quantity-quickorder .price-old{
+	font-size:16px;
+	font-weight:500;
+    text-decoration: line-through;
+	vertical-align: middle;
+	display:inline-block;
+}
+#popup-quickorder .price-quantity-quickorder .price-new{
+	font-size:16px;
+	font-weight:500;
+	color: #f00;
+	vertical-align: middle;
+	display:inline-block;
+}
+#popup-quickorder .price-quantity-quickorder .quantity_quickorder {
+	display:inline-block;
+	vertical-align:middle;
+	margin-left:20px;
+}
+#popup-quickorder .quantity_quickorder > input {
+	border: 1px solid #d9d9d9;
+	text-align: center;
+	height:30px !important;
+	float:left;
+	margin-left:-1px;
+}
+#popup-quickorder .minus_quantity {
+  border-right: 0 none !important;
+  width: 20px;
+}
+#popup-quickorder .plus_quantity {
+  border-left: 0 none !important;
+  width: 20px;
+}
+#popup-quickorder .quantity_quickorder > input:hover {
+	background:#fff;
+}
+#decrease_quickorder, #increase_quickorder {
+  width: 21px !important;
+  height:30px !important;
+}
+
+#popup-quickorder .sections_block_rquaired .fa {
+	color:#fc5c3c !important;
+}
+#popup-quickorder .sections_block .fa {
+	color:#67ca67 !important;
+}
+#popup-quickorder .sections_block , .sections_block_rquaired{
+  overflow: hidden;
+  position: relative;
+}
+#popup-quickorder .icon-append-1 {  
+  font-size: 15px !important;
+}
+#popup-quickorder #error_name {
+  background: #fff none repeat scroll 0 0;
+  color: #fc5c3c;
+  left: 23px;
+  line-height: 29px;
+  padding: 0 25px 0 0;
+  position: absolute;
+  top: 2px;
+  z-index: 999;
+}
+#popup-quickorder #error_phone {
+  background: #fff none repeat scroll 0 0;
+  color: #fc5c3c;
+  left: 23px;
+  line-height: 29px;
+  padding: 0 25px 0 0;
+  position: absolute;
+  top: 2px;
+  z-index: 999;
+}
+#popup-quickorder #error_email {
+  background: #fff none repeat scroll 0 0;
+  color: #fc5c3c;
+  left: 23px;
+  line-height: 29px;
+  padding: 0 25px 0 0;
+  position: absolute;
+  top: 2px;
+  z-index: 999;
+}
+#popup-quickorder #error_comment_buyer {
+  background: #fff none repeat scroll 0 0;
+  color: #fc5c3c;
+  left: 23px;
+  line-height: 29px;
+  padding: 0 25px 0 0;
+  position: absolute;
+  top: 2px;
+  z-index: 999;
+}
+.loading_quick_order .fa {
+  font-size: 50px;
+  left: 45%;
+  position: absolute;
+  top: 35%;
+  z-index: 9999;
+}
+.btn-quickorder {
+	color: #ffffff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	background-color: #1EA7D8;
+}
+.btn-quickorder:hover, .btn-quickorder:focus{
+	background-color: #2198C5;
+	color: #ffffff;
+}
+

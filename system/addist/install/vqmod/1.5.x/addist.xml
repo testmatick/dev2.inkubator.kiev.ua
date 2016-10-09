@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <id>Addist framework [by addist.ru]</id>
+    <version>0.2</version>
+    <vqmver>2</vqmver>
+    <author>Mumtoz Qodirov [addist.ru]</author>
+    
+    <file name="system/engine/front.php">
+        <operation error="skip">
+            <search position="before"><![CDATA[$this->registry = $registry;]]></search>
+            <add><![CDATA[require_once(DIR_SYSTEM.'addist/startup.php');]]></add>
+        </operation>
+    </file>
+    
+    <file name="system/library/db.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[function query($sql)]]></search>
+            <add><![CDATA[function query($sql, $direct = false)]]></add>
+        </operation>
+    </file>
+    
+    <file name="system/engine/controller.php">
+        <operation error="skip">
+            <ignoreif><![CDATA[function getChild]]></ignoreif>
+            <search position="before"><![CDATA[protected function render]]></search>
+            <add><![CDATA[
+    protected function getChild($child, $args = array()) {
+    	$action = new Action($child, $args);
+    
+    	if (file_exists($action->getFile())) {
+    		require_once($action->getFile());
+    
+    		$class = $action->getClass();
+    
+    		$controller = new $class($this->registry);
+    
+    		$controller->{$action->getMethod()}($action->getArgs());
+    
+    		return $controller->output;
+    	} else {
+    		trigger_error('Error: Could not load controller ' . $child . '!');
+    		exit();					
+    	}
+    }
+    
+            ]]></add>
+        </operation>
+    </file>
+</modification>

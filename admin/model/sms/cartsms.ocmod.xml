@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <name>Cart SMS for OpenCart by TOPefekt s.r.o.</name>
+    <version>3.02</version>
+    <author>TOPefekt (Lukáš Piják)</author>
+    <link>http://www.cartsms.com/</link>
+    <file path="admin/controller/common/column_left.php">
+        <operation>
+            <search><![CDATA[
+                    public function index() {
+                        ]]>
+            </search>
+            <add position="after"><![CDATA[
+                    if(!defined("SMS_MODULE")){
+                        if(file_exists("model/sms/hooks.php"))
+                        {                            
+                            require_once("model/sms/hooks.php");
+                            require_once("model/sms/sms.php");
+                            $hooks = new ModelSmsHooks( $this->registry );
+                            require_once($hooks->getLanguageDirectory());
+                        }
+                    }
+                        ]]>
+            </add>
+        </operation>
+    </file>
+    <file path="admin/view/template/common/menu.tpl">
+        <operation>
+            <search><![CDATA[
+                  <li id="reports"><a class="parent"><i class="fa fa-bar-chart-o fa-fw"></i> <span><?php echo $text_reports; ?></span></a>
+				]]>
+            </search>
+            <add position="before"><![CDATA[
+              <?php if(isset($sms_status) && $sms_status == 1){ ?>
+              <li id="sms"><a class="parent"><i class="fa fa-envelope-o fa-fw"></i>  <span><?php echo v_smsanswers_sms; ?></span></a>        
+                <ul>
+                  <li><a href="<?php echo $sms_send; ?>"><?php echo v_smsprestashop_send; ?></a></li>
+                  <li><a href="<?php echo $sms_marketing; ?>"><?php echo v_smsprestashop_marketing ;?></a></li>
+                  <li><a href="<?php echo $sms_history; ?>"><?php echo v_smsprestashop_history; ?></a></li>
+                  <li><a href="<?php echo $sms_statistics; ?>"><?php echo v_statistics; ?></a></li>
+                  <li><a href="<?php echo $sms_answers; ?>"><?php echo v_smsprestashop_answers; ?></a></li>
+                  <li><a href="<?php echo $sms_credit; ?>"><?php echo v_smsprestashop_credit; ?></a></li>
+                  <li><a class="parent"><?php echo v_menu_setting; ?></a>
+                    <ul>
+                        <li><a href="<?php echo $sms_profile; ?>"><?php echo v_adminsmsprofile_editaccount; ?></a></li>
+                        <li><a href="<?php echo $sms_admin ?>"><?php echo v_smsprestashop_admin; ?></a></li>
+                        <li><a href="<?php echo $sms_customer; ?>"><?php echo v_smsprestashop_customer; ?></a></li>
+                        <li><a href="<?php echo $sms_smscharging; ?>"><?php echo v_smsprestashop_smscharging; ?></a></li>
+                        <li><a href="<?php echo $sms_settings; ?>"><?php echo v_smsprestashop_settings; ?></a></li>
+                    </ul>
+                  </li>
+                  <li><a href="<?php echo $sms_about; ?>"><?php echo v_smsprestashop_about; ?></a></li>
+                </ul>
+              </li>
+              <?php } ?>
+            ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="admin/controller/common/menu.php">
+        <operation>
+            <search><![CDATA[
+                            $data['zone'] = $this->url->link('localisation/zone', 'token=' . $this->session->data['token'], 'SSL');
+				]]>
+            </search>
+            <add position="after"><![CDATA[
+                            $this->load->model('setting/setting');
+                            $smsSettings = $this->model_setting_setting->getSetting("sms");
+                            if(isset($smsSettings["sms_status"]))
+                            {
+                                $data['sms_status'] = $smsSettings["sms_status"];
+                            } 
+                            else 
+                            {
+                                $data['sms_status'] = 0;
+                            }
+                            
+                            $data['sms_profile'] = $this->url->link('sms/profile', 'token=' . $this->session->data['token'], 'SSL');
+                            $data['sms_send'] = $this->url->link('sms/send', 'token=' . $this->session->data['token'], 'SSL');
+                            $data['sms_marketing'] = $this->url->link('sms/marketing', 'token=' . $this->session->data['token'], 'SSL');
+                            $data['sms_history'] = $this->url->link('sms/history', 'token=' . $this->session->data['token'], 'SSL');
+                            $data['sms_statistics'] = $this->url->link('sms/statistics', 'token=' . $this->session->data['token'], 'SSL');
+                            $data['sms_answers'] = $this->url->link('sms/answers', 'token=' . $this->session->data['token'], 'SSL');
+                            $data['sms_admin'] = $this->url->link('sms/admin', 'token=' . $this->session->data['token'], 'SSL');
+                            $data['sms_customer'] = $this->url->link('sms/customer', 'token=' . $this->session->data['token'], 'SSL');
+                            $data['sms_smscharging'] = $this->url->link('sms/smscharging', 'token=' . $this->session->data['token'], 'SSL');
+                            $data['sms_settings'] = $this->url->link('sms/settings', 'token=' . $this->session->data['token'], 'SSL');
+                            $data['sms_credit'] = $this->url->link('sms/credit', 'token=' . $this->session->data['token'], 'SSL');
+                            $data['sms_about'] = $this->url->link('sms/about', 'token=' . $this->session->data['token'], 'SSL');
+				]]>
+            </add>
+        </operation>
+    </file>
+    <file path="admin/view/template/sale/order_info.tpl">
+        <operation>
+            <search><![CDATA[
+                <input type="checkbox" name="notify" value="1" id="input-notify" />
+		]]>
+            </search>
+            <add position="after"><![CDATA[  
+                              </div>
+                </div>    
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-notifySms"><?php echo v_sendsms_sendsms; ?></label>
+                  <div class="col-sm-10">
+                    <input type="checkbox" name="notifySms" value="1" id="input-notify" checked="checked"/>
+
+            ]]>                    
+            </add>
+        </operation>
+        <operation>
+            <search><![CDATA[data: 'order_status_id=' + encodeURIComponent($('select[name=\'order_status_id\']').val()) + '&notify=' + ($('input[name=\'notify\']').prop('checked') ? 1 : 0) + '&append=' + ($('input[name=\'append\']').prop('checked') ? 1 : 0) + '&comment=' + encodeURIComponent($('textarea[name=\'comment\']').val()),]]></search>
+            <add position="replace"><![CDATA[data: 'order_status_id=' + encodeURIComponent($('select[name=\'order_status_id\']').val()) + '&notify=' + ($('input[name=\'notify\']').prop('checked') ? 1 : 0) + '&notifySms=' + ($('input[name=\'notifySms\']').prop('checked') ? 1 : 0) +  '&append=' + ($('input[name=\'append\']').prop('checked') ? 1 : 0) + '&comment=' + encodeURIComponent($('textarea[name=\'comment\']').val()),]]></add>
+        </operation>
+    </file>
+    <file path="admin/model/sale/return.php">
+        <operation>
+            <search position="before"><![CDATA[
+                    if ($data['notify']) {
+                    ]]>
+            </search>
+            <add position="before"><![CDATA[                          
+                        $this->event->trigger('sms.post.return.history.add', $return_id);
+                    ]]>
+            </add>
+        </operation> 
+    </file>
+    <file path="catalog/controller/information/contact.php">
+        <operation>
+            <search><![CDATA[
+                    $mail->send();
+                    ]]>
+            </search>
+            <add  position="after"><![CDATA[                          
+                        $data = array("email" => $this->request->post['email'], "name" => $this->request->post['name'], "text" => $this->request->post['enquiry']);            
+                        $this->event->trigger('sms.post.contactformmail.send', $data);
+                    ]]>
+            </add>
+        </operation>
+    </file>
+    <file path="catalog/controller/checkout/success.php" error="skip">
+        <operation>
+            <search><![CDATA[
+                                $this->cart->clear();
+				]]>
+            </search>
+            <add position="before"><![CDATA[                               
+                $this->event->trigger('sms.post.order.add.success', $this->session->data['order_id']);
+            
+				]]>
+            </add>
+        </operation>
+    </file>
+    <file path="catalog/controller/module/bestseller.php" error="skip">
+        <operation>
+            <search><![CDATA[
+                    if ($result['image']) {
+                    ]]>
+            </search>
+            <add position="before"><![CDATA[                          
+                    if($result["model"] == "InfoSMS") 
+                        continue;
+                    ]]>
+            </add>
+        </operation>
+    </file>
+    <file path="catalog/controller/common/content_top.php" error="skip">
+        <operation>
+            <search><![CDATA[
+                    $setting_info = $this->model_extension_module->getModule($part[1]);
+                    ]]>
+            </search>
+            <add position="before"><![CDATA[                          
+                    if(!method_exists($this->model_extension_module, "getModule"))
+                    {
+                        $this->load->model('extension/module');
+                    }
+                    ]]>
+            </add>
+        </operation>
+    </file>
+    <file path="system/library/cart.php" error="skip">
+        <operation>
+            <search><![CDATA[
+                                $this->weight = $registry->get('weight');
+				]]>
+            </search>
+            <add position="after"><![CDATA[                          
+                                $this->getSmsProduct();
+				]]>
+            </add>
+        </operation>
+        <operation>
+            <search><![CDATA[
+                                public function clear() {
+				]]>
+            </search>
+            <add position="before"><![CDATA[     
+                                private $product_id;
+                    
+                                private function isOptOutEnable()
+                                {
+                                    if(!$this->isSmsModuleInstalled())
+                                        return false;
+                            
+                                    $auto = $this->isAutoOptOut();
+                                                        
+                                    $optOut = false;    
+                            
+                                    $store_id = $this->config->get('config_store_id');
+                                    if(!isset($store_id))
+                                        $store_id = 0;
+                            
+                                    $result = $this->db->query("SELECT active FROM ".DB_PREFIX."sp_optout_prices WHERE shop_id = $store_id limit 1");
+                                    
+                                    if ($result->num_rows)
+                                    {
+                                        foreach ($result->rows as $row)
+                                        {
+                                            $optOut = $row["active"];
+                                        }
+                                    }
+                            
+                                    if($auto == false && $optOut)
+                                    {
+                                        $_SESSION["SMS_IN_CART"] = false;
+                                    }  
+
+                                    return $optOut;
+                                }
+                                
+                                private function isInCart($product_id, $recurring_id = 0, $option = array())
+                                {       
+                                    if(isset($this->session->data) && isset($this->session->data['cart']))
+                                    {
+                                        foreach($this->session->data['cart'] as $key => $qty)
+                                        {
+                                            if($product_id == $this->keyToProductId($key))
+                                            {
+                                                return true;
+                                            }
+                                        }
+                                        return false;
+                                    }
+                                    else
+                                    {
+                                        $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "cart WHERE customer_id = '" . (int)$this->customer->getId() . "' AND session_id = '" . $this->db->escape($this->session->getId()) . "' AND product_id = '" . (int)$product_id . "' AND recurring_id = '" . (int)$recurring_id . "' AND `option` = '" . $this->db->escape(json_encode($option)) . "'");
+
+                                		if ($query->row['total']) 
+                                        {
+                                            return true;
+                                        }
+                                        return false;
+                                    }
+                                }
+                                
+                                private function keyToProductId($key)
+                                {
+                                    $data = unserialize(base64_decode($key));
+                                    
+                                    if(isset($data["product_id"]))
+                                    {
+                                        return $data["product_id"];
+                                    }
+                                    return false;
+                                }
+
+                                private function getSmsProduct()
+                                { 
+                                    if(!$this->isSmsModuleInstalled())
+                                    {
+                                        return false;
+                                    }
+                            
+                                    if(isset($this->product_id))
+                                    {
+                                        return $this->product_id;
+                                    } 
+                                    else 
+                                    {
+                                        $store_id = $this->config->get('config_store_id');
+                                        if(!isset($store_id))
+                                        {
+                                            $store_id = 0;
+                                        }
+                            
+                                        $result = $this->db->query("SELECT * FROM ".DB_PREFIX."product INNER JOIN  ".DB_PREFIX."product_to_store ON  ".DB_PREFIX."product.product_id =  ".DB_PREFIX."product_to_store.product_id WHERE model like 'InfoSMS' AND store_id = ".$store_id.";");
+
+                                        if ($result->num_rows)
+                                        {
+                                            foreach ($result->rows as $row)
+                                            {
+                                                $this->product_id = $row["product_id"];
+                                                return $this->product_id;
+                                            }
+                                        }
+                                    }
+                                    return false;
+                                }
+
+                                private function isSmsModuleInstalled()
+                                {
+                                    $result = $this->db->query("SELECT value FROM ".DB_PREFIX."setting WHERE `key` like 'sms_status'");
+
+                                    if ($result->num_rows)
+                                    {
+                                        foreach ($result->rows as $row)
+                                        {
+                                            return $row["value"];
+                                        }
+                                    }
+
+                                    return false;
+                                }
+                            
+                                private function isAutoOptOut()
+                                {
+                                    $id_shop = $this->config->get('config_store_id');
+                            
+                                    $result = $this->db->query("SELECT * FROM `" . DB_PREFIX . "sp_config` WHERE `shop_id` = '".$id_shop."' AND `config_name` = 'optout_auto'");
+                                    
+                                    if ($result->num_rows)
+                                    {
+                                        foreach ($result->rows as $row)
+                                        {
+                                            return $row["config_value"];
+                                        }
+                                    }
+                                    return true;
+                                }
+
+                                private function optOutAdd($product_id)
+                                {                 
+                                    $auto = $this->isAutoOptOut();
+
+                                    if(($this->getSmsProduct() == $product_id))
+                                    {
+                                        if($auto)
+                                        {
+                                            return false;
+                                        }
+                                        else
+                                        {
+                                            $_SESSION["SMS_IN_CART"] = true;
+                                            return true;
+                                        }
+                                    }
+
+                                                                       
+                                    if($this->getSmsProduct())
+                                    {
+                                        if($this->hasProducts() && !$this->isInCart($this->getSmsProduct()) && (!isset($_SESSION["SMS_IN_CART"]) || $_SESSION["SMS_IN_CART"] !== false))
+                                        {
+                                            if($auto)
+                                            {
+                                                $this->add($this->getSmsProduct());
+                                                $_SESSION["SMS_IN_CART"] = true;
+                                            }
+                                        }
+                                        
+                                        if($this->hasProducts()==1 && $this->isInCart($this->getSmsProduct()))
+                                        {
+                                            if($auto)
+                                            {
+                                                if(isset($this->session->data) && isset($this->session->data['cart']))
+                                                {
+                                                    $_SESSION["cart"]->remove($this->id_product); 
+                                                }
+                                                
+                                                unset($_SESSION["SMS_IN_CART"]);
+                                            }
+                                        }
+                                    }
+                                }
+
+                                private function optOutRemove()
+                                {
+                                    if($this->getSmsProduct()){
+                                        if($this->hasProducts()==1 && $this->isInCart($this->getSmsProduct())){
+                                           $this->clear(); 
+                                           unset($_SESSION["SMS_IN_CART"]);
+                                        }
+
+                                        if(isset($_SESSION["SMS_IN_CART"]) && $_SESSION["SMS_IN_CART"] === true && !$this->isInCart($this->getSmsProduct())){
+                                            $_SESSION["SMS_IN_CART"] = false;
+                                        }
+
+                                        if($this->hasProducts() < 1){
+                                           unset($_SESSION["SMS_IN_CART"]); 
+                                        }
+                                    }
+                                }
+                                
+                                private function cartIdToProductId($cart_id)
+                                {
+                                    $result = $this->db->query("SELECT `product_id` FROM `" . DB_PREFIX . "cart` WHERE `cart_id` = '".$cart_id."' LIMIT 1");
+                                    
+                                    if ($result->num_rows)
+                                    {
+                                        foreach ($result->rows as $row)
+                                        {
+                                            return $row["product_id"];
+                                        }
+                                    }
+                                    return true;
+                                }
+				]]>
+            </add>
+        </operation>
+        <operation>
+            <search><![CDATA[
+                            $this->session->data['cart'][$key] += (int)$qty;
+				]]>
+            </search>
+            <add position="after"><![CDATA[
+                                            }
+                                if($this->isOptOutEnable()){
+                                    $this->optOutAdd($product_id);
+				]]>
+            </add>
+        </operation>
+        <operation>
+            <search><![CDATA[
+                                unset($this->session->data['cart'][$key]);
+				]]>
+            </search>
+            <add position="after"><![CDATA[ 
+                                  
+                                if($this->isOptOutEnable()){
+                                    $this->optOutRemove();
+                                }
+				]]>
+            </add>
+        </operation>
+        <operation>
+            <search ><![CDATA[
+                                public function update($key, $qty) {
+				]]>
+            </search>
+            <add position="after"><![CDATA[ 
+                                if($this->keyToProductId($key) == $this->getSmsProduct()){
+                                    return;
+                                }
+				]]>
+            </add>
+        </operation>
+        
+        
+        
+        
+        
+        <operation>
+            <search><![CDATA[
+                            $this->db->query("UPDATE " . DB_PREFIX . "cart SET quantity = (quantity + " . (int)$quantity . ") WHERE customer_id = '" . (int)$this->customer->getId() . "' AND session_id = '" . $this->db->escape($this->session->getId()) . "' AND product_id = '" . (int)$product_id . "' AND recurring_id = '" . (int)$recurring_id . "' AND `option` = '" . $this->db->escape(json_encode($option)) . "'");
+				]]>
+            </search>
+            <add position="after"><![CDATA[
+                                            }
+                                if($this->isOptOutEnable()){
+                                    $this->optOutAdd($product_id);
+				]]>
+            </add>
+        </operation>
+        <operation>
+            <search><![CDATA[
+                                $this->db->query("DELETE FROM " . DB_PREFIX . "cart WHERE cart_id = '" . (int)$cart_id . "' AND customer_id = '" . (int)$this->customer->getId() . "' AND session_id = '" . $this->db->escape($this->session->getId()) . "'");
+				]]>
+            </search>
+            <add position="after"><![CDATA[ 
+                                  
+                                if($this->isOptOutEnable()){
+                                    $this->optOutRemove();
+                                }
+				]]>
+            </add>
+        </operation>
+        <operation>
+            <search ><![CDATA[
+                                public function update($cart_id, $quantity) {
+				]]>
+            </search>
+            <add position="after"><![CDATA[ 
+                                if($this->cartIdToProductId($cart_id) == $this->getSmsProduct()){
+                                    return;
+                                }
+				]]>
+            </add>
+        </operation>
+    </file>
+</modification>

@@ -1,0 +1,34 @@
+#livesearch_search_results {
+        margin:0px;
+        padding:0px;
+        position: absolute;
+        top: 80px;
+        left: 0px;
+        list-style-type: none;
+        z-index: 999;
+		width: 100%;
+        min-width: 160px;
+}
+#livesearch_search_results li {
+        padding: 15px 40px;
+		text-align: left;
+}
+#livesearch_search_results li:first-child  {
+     	border-top: none;
+}
+#livesearch_search_results li:last-child  {
+     	border-bottom: none;
+}
+#livesearch_search_results a,
+#livesearch_search_results a:visited,
+#livesearch_search_results a:hover {
+        text-decoration: none;
+}
+#livesearch_search_results li:hover a {
+}
+#livesearch_search_results li {
+        transition: all 0.2s ease-in 0s;	
+}
+#livesearch_search_results .highlighted a {  
+}
+
