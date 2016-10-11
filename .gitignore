@@ -11,7 +11,7 @@ system/cache/
 system/logs/
 
 system/storage/
-
+vqmod/*
 # =========================
 # Operating System Files
 # =========================
