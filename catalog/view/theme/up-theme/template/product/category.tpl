@@ -181,10 +181,7 @@
             <button type="button" data-toggle="tooltip" data-placement="left" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product['product_id']; ?>');" class="compare"><i class="fa fa-gavel"></i></button>
             <button type="button" data-toggle="tooltip" data-placement="left" title="<?php echo $product['description']; ?>" class="info"><i class="fa fa-info"></i></button>
       
-            <div class="flybar">  
-            <div class="flybar-quickview">
-            <a class="btn btn-default quickview" href="<?php echo $product['quickview']; ?>"><?php echo $text_quickview; ?></a>
-            </div>
+            <div class="flybar">
             <div class="flybar-cart">
             <button type="button" onclick="cart.add('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" class="btn btn-primary"><?php echo $button_cart; ?></button>  
             </div>   
