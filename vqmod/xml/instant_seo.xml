@@ -502,4 +502,71 @@
 			]]></add>
 		</operation>		
 	</file>
+
+	<file name="admin/model/catalog/article.php">
+		<operation>
+			<search position="before"><![CDATA[$this->cache->delete('article');]]></search>
+			<add><![CDATA[
+			
+				require_once(DIR_APPLICATION . 'controller/catalog/seopack.php');
+				$seo = new ControllerCatalogSeoPack($this->registry);
+				
+				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "setting WHERE `key` like 'seopack%'");
+			
+				foreach ($query->rows as $result) {
+						if (!$result['serialized']) {
+							$data[$result['key']] = $result['value'];
+						} else {
+							if ($result['value'][0] == '{') {$data[$result['key']] = json_decode($result['value'], true);} else {$data[$result['key']] = unserialize($result['value']);}
+						}
+					}
+					
+				if (isset($data)) {$seopack_parameters = $data['seopack_parameters'];}
+				
+				if ((isset($seopack_parameters['autourls'])) && ($seopack_parameters['autourls']))
+					{
+						require_once(DIR_APPLICATION . 'controller/catalog/seopack.php');
+						$seo = new ControllerCatalogSeoPack($this->registry);
+						
+						$query = $this->db->query("SELECT ad.article_id, ad.name, ad.language_id, l.code FROM ".DB_PREFIX."article a 
+								inner join ".DB_PREFIX."article_description ad on a.article_id = ad.article_id 
+								inner join ".DB_PREFIX."language l on l.language_id = ad.language_id
+								where a.article_id = '" . (int)$article_id . "'");
+
+						
+						foreach ($query->rows as $article_row){	
+
+							
+							if( strlen($article_row['name']) > 1 ){
+							
+								$slug = $seo->generateSlug($article_row['name']);
+								$exist_query =  $this->db->query("SELECT query FROM " . DB_PREFIX . "url_alias WHERE " . DB_PREFIX . "url_alias.query = 'article_id=" . $article_row['article_id'] . "' and language_id=".$article_row['language_id']);
+								
+								if(!$exist_query->num_rows){
+									
+									$exist_keyword = $this->db->query("SELECT query FROM " . DB_PREFIX . "url_alias WHERE " . DB_PREFIX . "url_alias.keyword = '" . $slug . "'");
+									if($exist_keyword->num_rows){ 
+										$exist_keyword_lang = $this->db->query("SELECT query FROM " . DB_PREFIX . "url_alias WHERE " . DB_PREFIX . "url_alias.keyword = '" . $slug . "' AND " . DB_PREFIX . "url_alias.query <> 'article_id=" . $article_row['article_id'] . "'");
+										if($exist_keyword_lang->num_rows){
+												$slug = $seo->generateSlug($article_row['name']).'-'.rand();
+											}
+											else
+											{
+												$slug = $seo->generateSlug($article_row['name']).'-'.$article_row['code'];
+											}
+										}
+									
+										
+									
+									$add_query = "INSERT INTO " . DB_PREFIX . "url_alias (query, keyword,language_id) VALUES ('article_id=" . $article_row['article_id'] . "', '" . $slug . "', " . $article_row['language_id'] . ")";
+									$this->db->query($add_query);
+									
+								}
+							}
+						}
+					}
+			]]></add>
+		</operation>		
+	</file>
+
 </modification>
