@@ -1,14 +1,74 @@
----------- Date: 2016-09-26 11:33:17 ~ IP : 88.135.193.118 ----------
+---------- Date: 2016-10-17 16:00:02 ~ IP : 127.0.0.1 ----------
 REQUEST URI : /
 MOD DETAILS:
-   modFile   : /home/estre296/domains/inkubator.kiev.ua/public_html/vqmod/xml/ML_seo_keywords.xml
+   modFile   : D:\Server\OpenServer\domains\dev2.inkubator.kiev.ua\vqmod/xml/ML_seo_keywords.xml
    id        : Multi Language SEO Keywords
    version   : 1.0.0
    vqmver    : 2.1.5
    author    : ovife21
 
-File Name    : catalog/controller/common/language.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->response->redirect($this->request->post['redirect']);
+File Name    : catalog/controller/common/home.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->config->get('config_title')
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-10-17 18:41:44 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /
+MOD DETAILS:
+   modFile   : D:\Server\OpenServer\domains\dev2.inkubator.kiev.ua\vqmod/xml/ML_seo_keywords.xml
+   id        : Multi Language SEO Keywords
+   version   : 1.0.0
+   vqmver    : 2.1.5
+   author    : ovife21
+
+File Name    : catalog/controller/common/home.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->config->get('config_title')
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-10-17 20:06:35 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /
+MOD DETAILS:
+   modFile   : D:\Server\OpenServer\domains\dev2.inkubator.kiev.ua\vqmod/xml/ML_seo_keywords.xml
+   id        : Multi Language SEO Keywords
+   version   : 1.0.0
+   vqmver    : 2.1.5
+   author    : ovife21
+
+File Name    : catalog/controller/common/home.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->config->get('config_title')
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-10-17 20:43:34 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /
+MOD DETAILS:
+   modFile   : D:\Server\OpenServer\domains\dev2.inkubator.kiev.ua\vqmod/xml/ML_seo_keywords.xml
+   id        : Multi Language SEO Keywords
+   version   : 1.0.0
+   vqmver    : 2.1.5
+   author    : ovife21
+
+File Name    : catalog/controller/common/home.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->config->get('config_title')
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-10-17 21:39:24 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /kupit-inkubator-dlya-yaic-v-cahnovshine-inkubator-bitovoi-cahnovshina
+MOD DETAILS:
+   modFile   : D:\Server\OpenServer\domains\dev2.inkubator.kiev.ua\vqmod/xml/ML_seo_keywords.xml
+   id        : Multi Language SEO Keywords
+   version   : 1.0.0
+   vqmver    : 2.1.5
+   author    : ovife21
+
+File Name    : catalog/controller/common/home.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->config->get('config_title')
 
 ----------------------------------------------------------------------
 
