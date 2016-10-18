@@ -51,7 +51,7 @@
 			} elseif (isset($data['route']) && $data['route'] ==   'product/special' && $key != 'page' && $key != 'sort' && $key != 'limit' && $key != 'order') { $url .=  '/special';
 			} elseif (isset($data['route']) && $data['route'] ==   'account/login') { $url .=  '/login';
 			} elseif (isset($data['route']) && $data['route'] ==   'account/logout') { $url .=  '/logout';
-			} elseif (isset($data['route']) && $data['route'] ==   'information/articles') { $url .=  '/articles';			
+			} elseif (isset($data['route']) && $data['route'] ==   'information/articles' && $key != 'page') { $url .=  '/articles';			
 			} elseif (isset($data['route']) && $data['route'] ==   'account/register') { $url .=  '/register';
 			]]></add>
 		</operation>
