@@ -20,7 +20,7 @@ if (count($categories_blogs) > 0) {
 		}
 
 ?>
-<li <?php if ($i >= $blogs['flag_end']) { echo 'class="dropdown"'; } ?>><a <?php if (!$blogs['act']) echo 'href="'.$blogs['href'].'"'; ?> <?php if ($i >= $blogs['flag_end']) { echo ''; } ?>  <?php if ($childs) { ?> data-toggle="dropdown" <?php } ?> class="<?php if ($childs) { echo 'dropdown-toggle'; } ?> <?php if ($blogs['act']) echo 'active'; if ($blogs['active'] == 'pass') echo 'sc_pass'; ?>">
+<li class="menu_oc" <?php if ($i >= $blogs['flag_end']) { echo 'class="dropdown"'; } ?>><a <?php if (!$blogs['act']) echo 'href="'.$blogs['href'].'"'; ?> <?php if ($i >= $blogs['flag_end']) { echo ''; } ?>  <?php if ($childs) { ?> data-toggle="dropdown" <?php } ?> class="<?php if ($childs) { echo 'dropdown-toggle'; } ?> <?php if ($blogs['act']) echo 'active'; if ($blogs['active'] == 'pass') echo 'sc_pass'; ?>">
 <?php if (isset($settings_widget['thumb_status']) && $settings_widget['thumb_status'] && $blogs['thumb']) { ?>
    	<img src="<?php echo $blogs['thumb']; ?>" title="<?php echo $blogs['name']; ?>" alt="<?php echo $blogs['name']; ?>">
 <?php } ?>
