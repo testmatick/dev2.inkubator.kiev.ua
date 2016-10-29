@@ -2,52 +2,6 @@
 // Version
 define('VERSION', '2.1.0.2');
 
-//  ww ->  www
-//------------------------------------------------------------------------------
-$rurl=$_SERVER['REQUEST_URI'];
-$rhost = $_SERVER['HTTP_HOST'];
-if ((strpos($rhost,'ww.')) && empty($_POST))
-  {
-    $nhost = str_replace('www.','',$rhost);
-    header("HTTP/1.1 301 Moved Permanently");
-    header("Location: http://".$nhost.$rurl);
-    exit();
-  }
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-$rurl = $_SERVER['REQUEST_URI']; 
-if (($rurl=='/index.php')&&(empty($_POST))){
-  header("HTTP/1.1 301 Moved Permanently");
-  header("Location: /");
-  exit();  
-}
-//------------------------------------------------------------------------------
-
-// /index.php?route=common/home
-//------------------------------------------------------------------------------
-$rurl = $_SERVER['REQUEST_URI']; 
-if (($rurl=='/index.php?route=common/home')&&(empty($_POST))){
-  header("HTTP/1.1 301 Moved Permanently");
-  header("Location: /");
-  exit();  
-}
-//------------------------------------------------------------------------------
-
-
-
-//  /index.php/
-//------------------------------------------------------------------------------
-$rurl = $_SERVER['REQUEST_URI']; 
-if ((strpos($rurl,'/index.php/')!==False)&&(empty($_POST))){
-  header("HTTP/1.1 301 Moved Permanently");
-  header("Location: ".str_replace('/index.php/','/',$rurl));
-  exit();  
-  }
-//------------------------------------------------------------------------------
-
-
-
 // Configuration
 if (is_file('config.php')) {
 	require_once('config.php');
@@ -284,7 +238,10 @@ $registry->set('length', new Length($registry));
 
 // Cart
 $registry->set('cart', new Cart($registry));
-
+// Turbo
+	require_once(DIR_SYSTEM . 'turbo/turbo.php');
+	GLOBAL $turbo;
+	$turbo = new Turbo($registry);
 // Encryption
 $registry->set('encryption', new Encryption($config->get('config_encryption')));
 
