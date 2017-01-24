@@ -226,14 +226,14 @@ class ControllerCatalogLangmark extends Controller
         	$this->data['asc_langmark']['ex_multilang_route'] = "quickview|api/|common/simple_connector|search|assets|captcha";
 		}
 		if (!isset($this->data['asc_langmark']['ex_multilang_uri'])) {
-        	$this->data['asc_langmark']['ex_multilang_uri'] = "flycart";
+        	$this->data['asc_langmark']['ex_multilang_uri'] = "";
 		}
 
 		if (!isset($this->data['asc_langmark']['ex_url_route'])) {
         	$this->data['asc_langmark']['ex_url_route'] = "quickview|api/|common/simple_connector|assets|captcha";
 		}
 		if (!isset($this->data['asc_langmark']['ex_url_uri'])) {
-        	$this->data['asc_langmark']['ex_url_uri'] = "flycart";
+        	$this->data['asc_langmark']['ex_url_uri'] = "";
 		}
 
 
@@ -398,9 +398,9 @@ class ControllerCatalogLangmark extends Controller
             	'url_close_slash' => $devider,
             	'description_status' => true,
              	'ex_multilang_route' => "quickview|api/|common/simple_connector|search|assets|captcha|module/language",
-             	'ex_multilang_uri' => "flycart",
+             	'ex_multilang_uri' => "",
              	'ex_url_route' => "quickview|api/|common/simple_connector|assets|captcha|module/language",
-             	'ex_url_uri' => "flycart"
+             	'ex_url_uri' => ""
             );
 
 

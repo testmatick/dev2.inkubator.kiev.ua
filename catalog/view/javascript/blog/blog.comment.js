@@ -98,7 +98,7 @@ comments_vote = function (thisis) {
 
 comments_vote_loader = function () {
 
-    if ($.isFunction($.fn.on)) {
+    if ($.isFunction($.fn.on)) {
         $(document).on('click', '.comments_vote', function ( event, person) {
 
             comments_vote($(this));

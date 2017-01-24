@@ -7,6 +7,12 @@ if (is_file('config.php')) {
 	require_once('config.php');
 }
 
+require_once(DIR_SYSTEM . 'library/v2pagecache.php');           //V2PAGECACHE
+$pagecache = new V2PageCache();                                 //V2PAGECACHE
+if ($pagecache->ServeFromCache()) {                             //V2PAGECACHE
+    // exit here if we served this page from the cache          //V2PAGECACHE
+    return;                                                     //V2PAGECACHE
+}                                                               //V2PAGECACHE
 // Install
 if (!defined('DIR_APPLICATION')) {
 	header('Location: install/index.php');
@@ -238,10 +244,7 @@ $registry->set('length', new Length($registry));
 
 // Cart
 $registry->set('cart', new Cart($registry));
-// Turbo
-	require_once(DIR_SYSTEM . 'turbo/turbo.php');
-	GLOBAL $turbo;
-	$turbo = new Turbo($registry);
+
 // Encryption
 $registry->set('encryption', new Encryption($config->get('config_encryption')));
 
@@ -266,6 +269,7 @@ $controller->addPreAction(new Action('common/maintenance'));
 
 // SEO URL's
 $controller->addPreAction(new Action('common/seo_url'));
+
 // Router
 if (isset($request->get['route'])) {
 	$action = new Action($request->get['route']);
@@ -278,3 +282,6 @@ $controller->dispatch($action, new Action('error/not_found'));
 
 // Output
 $response->output();
+if ($pagecache->OkToCache()) {                                  //V2PAGECACHE
+    $pagecache->CachePage($response);                           //V2PAGECACHE
+}                                                               //V2PAGECACHE

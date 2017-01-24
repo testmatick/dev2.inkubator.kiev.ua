@@ -42,6 +42,7 @@ Disallow: /*&tracking=
 Disallow: /*?manufacturer
 Disallow: /*?keyword
 Disallow: /*?quickview
+Disallow: /*?route=product/category
 
 User-agent: Yandex
 Disallow: /admin

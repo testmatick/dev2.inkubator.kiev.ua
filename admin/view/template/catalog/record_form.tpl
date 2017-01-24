@@ -1071,7 +1071,7 @@ CKEDITOR.replace('description<?php echo $lang['language_id']; ?>', {
 
 <script>
 
-$('.related').each(function() {
+$('.related').each(function() {
 	var e = this;
 	var this_pointer_name = $(e).next().prop('value');
 	var this_pointer = this_pointer_name + '_id';
@@ -1191,7 +1191,7 @@ $(document).on('click', '#record-related div img', function() {
 	$('#record-related div:even').prop('class', 'even');
 });
 
-} else {
+} else {
 $('#record-related div img').live('click',  function() {
 	$(this).parent().remove();
 

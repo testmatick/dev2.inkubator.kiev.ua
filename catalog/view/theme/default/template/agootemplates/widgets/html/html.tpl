@@ -126,7 +126,7 @@ $(window).resize(function(){
 });
 
 
-function cbmobile_resize() {
+function cbmobile_resize() {
 var isMobile = false;
 
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
@@ -139,7 +139,7 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
 }
 
 <?php if (isset($settings_widget['modal_cbmobile_width_browser']) && $settings_widget['modal_cbmobile_width_browser']!='') { ?>
-	if ($(window).width() <= '<?php  echo $settings_widget['modal_cbmobile_width_browser'];	?>' || isMobile) {
+	if ($(window).width() <= '<?php  echo $settings_widget['modal_cbmobile_width_browser'];	?>' || isMobile) {
 	    $.colorbox.resize({
 <?php if (isset($settings_widget['modal_cbmobile_width']) && $settings_widget['modal_cbmobile_width']!='') { ?>
 		 width: "<?php echo $settings_widget['modal_cbmobile_width']; ?>",
@@ -162,7 +162,7 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
 <?php } ?>
 
 	    });
-	} else {
+	} else {
 	    $.colorbox.resize({
 <?php if (isset($settings_widget['modal_cb_width']) && $settings_widget['modal_cb_width']!='') { ?>
 		 width: "<?php echo $settings_widget['modal_cb_width']; ?>",

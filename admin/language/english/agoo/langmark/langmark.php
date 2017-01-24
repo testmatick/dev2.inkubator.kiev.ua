@@ -1,5 +1,5 @@
 <?php
-$_['text_widget_langmark'] = 'SEO multilang ver. 9.3';
+$_['text_widget_langmark'] = 'SEO multilang ver. 9.5';
 $_['text_separator'] = ' > ';
 
 $_['text_widget_langmark_settings'] = $_['text_widget_langmark'];

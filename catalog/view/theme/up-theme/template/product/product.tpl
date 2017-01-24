@@ -867,7 +867,11 @@ $('.product-right-sm-related-carousel').owlCarousel({
             <?php } ?> 
           </ul>
           <div class="tab-content">
-            <div class="fade in tab-pane active" id="tab-description"><?php echo $description; ?></div>
+            <div class="fade in tab-pane active" id="tab-description"><?php echo $description; ?>
+<!-- SynonymizeR start -->
+<?php echo $description_syn; ?>
+<?php $syn_price = ''; if ($price) { $syn_price = (!$special) ? $price : $special; } ?> <script type="text/javascript">$(document).ready(function() { $('span.synprice').each(function(){ $(this).text('<?php echo $syn_price; ?>');});}); </script>
+<!-- SynonymizeR end --></div>
             <?php if ($attribute_groups) { ?>
             <div class="fade tab-pane" id="tab-specification">
               <table class="table table-bordered">

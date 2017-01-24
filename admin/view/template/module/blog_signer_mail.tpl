@@ -15,7 +15,7 @@
 
 <?php
 foreach ($data['comment'] as $par => $val) {
-if ($par == 'text') {
+if ($par == 'text') {
 }
 }
 ?>

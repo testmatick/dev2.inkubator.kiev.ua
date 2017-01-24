@@ -175,7 +175,7 @@
                <?php
               if (isset($success_class)) {
               foreach ($success_class as $num => $class) {              	foreach ($class as $n => $classic) {
-              if (in_array($classic, $remove_class[$theme])) {
+              if (in_array($classic, $remove_class[$theme])) {
               ?>
                <input type="checkbox" value="<?php echo $classic; ?>" name="selected_class[<?php echo $classic; ?>][]" checked="checked" >
               <?php

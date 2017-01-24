@@ -31,7 +31,10 @@
 			} elseif ($this->request->get['_route_'] ==  'login') { $this->request->get['route'] =  'account/login';
 			} elseif ($this->request->get['_route_'] ==  'logout') { $this->request->get['route'] =  'account/logout';
 			} elseif ($this->request->get['_route_'] ==  'articles') { $this->request->get['route'] =  'information/articles';			
-			} elseif ($this->request->get['_route_'] ==  'register') { $this->request->get['route'] =  'account/register'; }
+			} elseif ($this->request->get['_route_'] ==  'register') { $this->request->get['route'] =  'account/register';
+			} elseif ($this->request->get['_route_'] ==  'simplecheckout') { $this->request->get['route'] =  'checkout/simplecheckout';
+          } elseif ($this->request->get['_route_'] ==  'simpleregister') { $this->request->get['route'] =  'account/simpleregister';
+			  }
 			else {
 				$this->request->get['route'] = 'error/not_found';
 			}
@@ -53,6 +56,8 @@
 			} elseif (isset($data['route']) && $data['route'] ==   'account/logout') { $url .=  '/logout';
 			} elseif (isset($data['route']) && $data['route'] ==   'information/articles' && $key != 'page') { $url .=  '/articles';			
 			} elseif (isset($data['route']) && $data['route'] ==   'account/register') { $url .=  '/register';
+			} elseif (isset($data['route']) && $data['route'] ==   'checkout/simplecheckout') { $url .=  '/simplecheckout';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/simpleregister') { $url .=  '/simpleregister';
 			]]></add>
 		</operation>
 	</file>

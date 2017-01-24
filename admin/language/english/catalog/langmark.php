@@ -1,5 +1,5 @@
 <?php
-$_['langmark_version'] 				= '9.3';
+$_['langmark_version'] 				= '9.5';
 
 $_['url_module_text'] 				= 'SEO multilang';
 $_['url_create_text'] 				= '<div style="text-align: center; text-decoration: none;">Create and update<br>data for the module<br><ins style="text-align: center; text-decoration: none; font-size: 13px;">(if installation and upgrade module)</ins></div>';

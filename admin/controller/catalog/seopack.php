@@ -333,60 +333,12 @@ class ControllerCatalogSeoPack extends Controller {
 			}
 		}			
 
-
 		$this->session->data['success'] .=  $i . " new manufacturer friendly SEO urls were created <br>";
-		
-		
-		
-		
-
-		$query = $this->db->query("SELECT ad.article_id, ad.name, ad.language_id, l.code FROM ".DB_PREFIX."article a 
-								inner join ".DB_PREFIX."article_description ad on a.article_id = ad.article_id 
-								inner join ".DB_PREFIX."language l on l.language_id = ad.language_id;");
-		$i = 0;		
-		
-		
-		
-		
-
-
-		foreach ($query->rows as $article_row){	
-
-			
-			if( strlen($article_row['name']) > 1 ){
-				
-
-				$slug = $this->generateSlug($article_row['name']);
-				$exist_query =  $this->db->query("SELECT query FROM " . DB_PREFIX . "url_alias WHERE " . DB_PREFIX . "url_alias.query = 'article_id=" . $article_row['article_id'] . "' and language_id=".$article_row['language_id']);
-				
-				if(!$exist_query->num_rows){
-					
-					$exist_keyword = $this->db->query("SELECT query FROM " . DB_PREFIX . "url_alias WHERE " . DB_PREFIX . "url_alias.keyword = '" . $slug . "'");
-					if($exist_keyword->num_rows){ $slug = $this->generateSlug($article_row['name']).'-'.rand();}
-						
-						
-									
-					$add_query = "INSERT INTO " . DB_PREFIX . "url_alias (query, keyword,language_id) VALUES ('article_id=" . $article_row['article_id'] . "', '" . $slug . "', " . $article_row['language_id'] . ")";
-					$this->db->query($add_query);
-					$i++;
-				}
-			}
-		}			
-
-		$this->session->data['success'] .=  $i . " new article friendly SEO urls were created <br>";
-
-
-
-
-
 
 		$query = $this->db->query("SELECT id.information_id, id.title, id.language_id, l.code FROM ".DB_PREFIX."information i
 			inner join ".DB_PREFIX."information_description id on i.information_id = id.information_id 
 			inner join ".DB_PREFIX."language l on l.language_id = id.language_id;");
-		$i = 0;		
-		
-		
-		
+		$i = 0;
 
 		foreach ($query->rows as $info_row){	
 
@@ -576,13 +528,13 @@ class ControllerCatalogSeoPack extends Controller {
 	
 	$cyr = array(
         "й"=>"i","ц"=>"c","у"=>"u","к"=>"k","е"=>"e","н"=>"n",
-        "г"=>"g","ш"=>"sh","щ"=>"sh","з"=>"z","х"=>"h","ъ"=>"\'",
+        "г"=>"g","ш"=>"sh","щ"=>"sh","з"=>"z","х"=>"x","ъ"=>"\'",
         "ф"=>"f","ы"=>"i","в"=>"v","а"=>"a","п"=>"p","р"=>"r",
         "о"=>"o","л"=>"l","д"=>"d","ж"=>"zh","э"=>"ie","ё"=>"e",
         "я"=>"ya","ч"=>"ch","с"=>"c","м"=>"m","и"=>"i","т"=>"t",
         "ь"=>"\'","б"=>"b","ю"=>"yu",
         "Й"=>"I","Ц"=>"C","У"=>"U","К"=>"K","Е"=>"E","Н"=>"N",
-        "Г"=>"G","Ш"=>"SH","Щ"=>"SH","З"=>"Z","Х"=>"H","Ъ"=>"\'",
+        "Г"=>"G","Ш"=>"SH","Щ"=>"SH","З"=>"Z","Х"=>"X","Ъ"=>"\'",
         "Ф"=>"F","Ы"=>"I","В"=>"V","А"=>"A","П"=>"P","Р"=>"R",
         "О"=>"O","Л"=>"L","Д"=>"D","Ж"=>"ZH","Э"=>"IE","Ё"=>"E",
         "Я"=>"YA","Ч"=>"CH","С"=>"C","М"=>"M","И"=>"I","Т"=>"T",

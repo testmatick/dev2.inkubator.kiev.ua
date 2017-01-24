@@ -170,7 +170,7 @@ function delayer(){
                       $('#mytabs_add').html('<?php echo $language->get('text_loading'); ?>');
 					},
 					success: function(html) {					$('#mytabs_add').html(this_block_html);
-						if (html) {
+						if (html) {
 							$('#mytabs').append('<a href=\'#mytabs' + ascp_widgets_num + '\' id=\'amytabs'+ascp_widgets_num+'\'>Widget-' + ascp_widgets_num + '<\/a>');
 							$('#lists').append('<div id=\'mytabs'+ascp_widgets_num+'\'>'+html+'<\/div>');
 							$('#mytabs a:visible').tabs();
@@ -724,7 +724,7 @@ function input_select_change() {
 
 <script>
 
-function select_this(ithis) {
+function select_this(ithis) {
 if (!$(ithis).hasClass('no_change')) {
 	        $(ithis).removeClass('sc_select_enable');
 	        $(ithis).removeClass('sc_select_disable');

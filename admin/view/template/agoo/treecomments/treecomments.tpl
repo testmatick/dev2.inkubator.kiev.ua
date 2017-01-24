@@ -1893,7 +1893,7 @@ $('input[name=\'ascp_widgets[<?php echo $list_num; ?>][record]\']').autocomplete
 		});
 	},
 
-	'select': function(event, ui) {
+	'select': function(event, ui) {
          	<?php
          	if (SC_VERSION < 20) {
          	?>

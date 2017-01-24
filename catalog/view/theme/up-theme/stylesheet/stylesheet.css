@@ -3593,3 +3593,24 @@ margin-right: -2.3em;
 .product-layout{
 	height:560px;
 }
+.product-buy-wrapper p,
+.tab-content p{
+	text-transform:none;
+}
+.pagecut ul  {
+    list-style:none;
+     padding:0;
+}
+
+.pagecut ul li:before
+{
+	content:"\f058";
+	padding-right:0.5em;
+	font-family:FontAwesome;
+	font-size:12px;
+	vertical-align:middle;
+	color:#A5C74E;
+}
+.tab-content li,.content-padd{
+	text-transform:none;
+}

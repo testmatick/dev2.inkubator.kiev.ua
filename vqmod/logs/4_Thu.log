@@ -1,7 +1,7 @@
----------- Date: 2016-10-20 15:55:52 ~ IP : 127.0.0.1 ----------
+---------- Date: 2016-11-10 12:04:54 ~ IP : 88.135.193.118 ----------
 REQUEST URI : /
 MOD DETAILS:
-   modFile   : D:\Server\OpenServer\domains\dev2.inkubator.kiev.ua\vqmod/xml/ML_seo_keywords.xml
+   modFile   : /home/estre296/domains/inkubator.kiev.ua/public_html/vqmod/xml/ML_seo_keywords.xml
    id        : Multi Language SEO Keywords
    version   : 1.0.0
    vqmver    : 2.1.5
@@ -13,10 +13,40 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->config->get('con
 ----------------------------------------------------------------------
 
 
----------- Date: 2016-10-20 15:56:13 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /admin/index.php?route=setting/store&token=uA3LQV2HJkEjbmXLnve9L7F59BBK9GwG
+---------- Date: 2016-11-10 16:35:24 ~ IP : 78.152.161.173 ----------
+REQUEST URI : /
 MOD DETAILS:
-   modFile   : D:\Server\OpenServer\domains\dev2.inkubator.kiev.ua\vqmod/xml/ML_seo_keywords.xml
+   modFile   : /home/estre296/domains/inkubator.kiev.ua/public_html/vqmod/xml/ML_seo_keywords.xml
+   id        : Multi Language SEO Keywords
+   version   : 1.0.0
+   vqmver    : 2.1.5
+   author    : ovife21
+
+File Name    : catalog/controller/common/home.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->config->get('config_title')
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-11-10 16:36:12 ~ IP : 88.135.193.118 ----------
+REQUEST URI : /uk/
+MOD DETAILS:
+   modFile   : /home/estre296/domains/inkubator.kiev.ua/public_html/vqmod/xml/ML_seo_keywords.xml
+   id        : Multi Language SEO Keywords
+   version   : 1.0.0
+   vqmver    : 2.1.5
+   author    : ovife21
+
+File Name    : catalog/controller/common/home.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->config->get('config_title')
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2016-11-10 16:39:30 ~ IP : 88.135.193.118 ----------
+REQUEST URI : /admin/index.php?route=setting/store&token=2DLsFC4TQ1qWQlO8ly5MDRN0zALZWlva
+MOD DETAILS:
+   modFile   : /home/estre296/domains/inkubator.kiev.ua/public_html/vqmod/xml/ML_seo_keywords.xml
    id        : Multi Language SEO Keywords
    version   : 1.0.0
    vqmver    : 2.1.5
@@ -28,10 +58,10 @@ VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): if (isset($this->reques
 ----------------------------------------------------------------------
 
 
----------- Date: 2016-10-20 15:56:16 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /admin/index.php?route=setting/setting&token=uA3LQV2HJkEjbmXLnve9L7F59BBK9GwG
+---------- Date: 2016-11-10 16:39:32 ~ IP : 88.135.193.118 ----------
+REQUEST URI : /admin/index.php?route=setting/setting&token=2DLsFC4TQ1qWQlO8ly5MDRN0zALZWlva
 MOD DETAILS:
-   modFile   : D:\Server\OpenServer\domains\dev2.inkubator.kiev.ua\vqmod/xml/ML_seo_keywords.xml
+   modFile   : /home/estre296/domains/inkubator.kiev.ua/public_html/vqmod/xml/ML_seo_keywords.xml
    id        : Multi Language SEO Keywords
    version   : 1.0.0
    vqmver    : 2.1.5
@@ -39,81 +69,6 @@ MOD DETAILS:
 
 File Name    : admin/controller/setting/setting.php(0)
 VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): if (isset($this->request->post['config_title'])) {
-
-----------------------------------------------------------------------
-
-
----------- Date: 2016-10-20 15:56:17 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /admin/index.php?route=setting/setting/template&token=uA3LQV2HJkEjbmXLnve9L7F59BBK9GwG&template=up-theme
-MOD DETAILS:
-   modFile   : D:\Server\OpenServer\domains\dev2.inkubator.kiev.ua\vqmod/xml/ML_seo_keywords.xml
-   id        : Multi Language SEO Keywords
-   version   : 1.0.0
-   vqmver    : 2.1.5
-   author    : ovife21
-
-File Name    : admin/controller/setting/setting.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): if (isset($this->request->post['config_title'])) {
-
-----------------------------------------------------------------------
-
-
----------- Date: 2016-10-20 15:56:26 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /admin/index.php?route=setting/setting&token=uA3LQV2HJkEjbmXLnve9L7F59BBK9GwG
-MOD DETAILS:
-   modFile   : D:\Server\OpenServer\domains\dev2.inkubator.kiev.ua\vqmod/xml/ML_seo_keywords.xml
-   id        : Multi Language SEO Keywords
-   version   : 1.0.0
-   vqmver    : 2.1.5
-   author    : ovife21
-
-File Name    : admin/controller/setting/setting.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): if (isset($this->request->post['config_title'])) {
-
-----------------------------------------------------------------------
-
-
----------- Date: 2016-10-20 15:56:27 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /admin/index.php?route=setting/setting/template&token=uA3LQV2HJkEjbmXLnve9L7F59BBK9GwG&template=up-theme
-MOD DETAILS:
-   modFile   : D:\Server\OpenServer\domains\dev2.inkubator.kiev.ua\vqmod/xml/ML_seo_keywords.xml
-   id        : Multi Language SEO Keywords
-   version   : 1.0.0
-   vqmver    : 2.1.5
-   author    : ovife21
-
-File Name    : admin/controller/setting/setting.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): if (isset($this->request->post['config_title'])) {
-
-----------------------------------------------------------------------
-
-
----------- Date: 2016-10-20 15:56:30 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /
-MOD DETAILS:
-   modFile   : D:\Server\OpenServer\domains\dev2.inkubator.kiev.ua\vqmod/xml/ML_seo_keywords.xml
-   id        : Multi Language SEO Keywords
-   version   : 1.0.0
-   vqmver    : 2.1.5
-   author    : ovife21
-
-File Name    : catalog/controller/common/home.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->config->get('config_title')
-
-----------------------------------------------------------------------
-
-
----------- Date: 2016-10-20 15:58:34 ~ IP : 127.0.0.1 ----------
-REQUEST URI : /
-MOD DETAILS:
-   modFile   : D:\Server\OpenServer\domains\dev2.inkubator.kiev.ua\vqmod/xml/ML_seo_keywords.xml
-   id        : Multi Language SEO Keywords
-   version   : 1.0.0
-   vqmver    : 2.1.5
-   author    : ovife21
-
-File Name    : catalog/controller/common/home.php(0)
-VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->config->get('config_title')
 
 ----------------------------------------------------------------------
 

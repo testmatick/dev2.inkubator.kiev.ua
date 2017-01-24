@@ -73,10 +73,35 @@ class agooUrl extends Controller
 			}
         }
 
+
+
+        if (stripos($modules, HTTPS_SERVER)!==false) {
+			$scheme = 'https';
+			$config_url = HTTPS_SERVER;
+        } else {
+
+	        if (stripos($modules, HTTP_SERVER)!==false) {
+            	$scheme = 'http';
+            	$config_url = HTTP_SERVER;
+	        } else {
+             	$scheme = false;
+             	$config_url = '';
+	        }
+        }
+
+        if ($scheme) {
+        	$config_url = substr($config_url, 0, $this->strpos_offset('/', $config_url, 3) + 1);
+        	$url = str_replace($config_url, '', $modules);
+        } else {
+        	$url = $modules;
+        }
+
+
+        /*
         $config_url_http  = substr($this->config->get('config_url'), 0, $this->strpos_offset('/', $this->config->get('config_url'), 3) + 1);
         if (!$config_url_http) $config_url_http = HTTP_SERVER;
 
-		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
+		if ((isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == '1')) || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && (strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) == 'https') || (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on'))) {
 			$conf_ssl = $this->config->get('config_ssl');
 			if (!$conf_ssl) $conf_ssl = HTTPS_SERVER;
 			$config_url = substr($conf_ssl, 0, $this->strpos_offset('/', $conf_ssl, 3) + 1);
@@ -88,6 +113,7 @@ class agooUrl extends Controller
 
 		$url = str_replace($config_url, '', $modules);
         $url = str_replace($config_url_http, '', $url);
+        */
 
 		if (isset($this->session->data['language'])) {
 			$code_session = $this->session->data['language'];

@@ -72,7 +72,7 @@ class agooMultilang extends Controller
 			$ajax = true;
 		}
 
-		if ((isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) || $this->config->get('config_secure')) {
+		if ((isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == '1')) || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && (strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) == 'https') || (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on'))) {
 			$conf_ssl = $this->config->get('config_ssl');
 			if (!$conf_ssl) $conf_ssl = HTTPS_SERVER;
 			$this->domen = substr($conf_ssl, 0, $this->strpos_offset('/', $conf_ssl, 3) + 1);
@@ -314,7 +314,7 @@ class agooMultilang extends Controller
 		        /* for seo pagination */
 				$parts_end = end($parts_route);
 
-				if (strpos($parts_end, $asc_langmark['pagination_prefix'].'-') !== false || strpos($parts_end, 'page-') !== false) {
+				if ($asc_langmark['pagination_prefix'] != '' && (strpos($parts_end, $asc_langmark['pagination_prefix'].'-') !== false || strpos($parts_end, 'page-') !== false)) {
 						list($key, $value) = explode("-", $parts_end);
                         $value = (int)$value;
 						if ($value > 1) {
@@ -333,12 +333,9 @@ class agooMultilang extends Controller
 
 		        		reset($parts_route);
 
-		       }
+		       	}
 		        /* for seo pagination */
         }
-
-
-
 
 		$parts_first = $parts[0];
 		$parts_first_array = explode('?', $parts_first);
