@@ -18,10 +18,6 @@ class ControllerAgooLangmarkLangmark extends Controller
 			$this->data['settings_general'] = $this->config->get('ascp_settings');
 		}
 
-        if (!isset($this->data['settingswidget'])) {
-        	$this->data['settingswidget'] = array();
-        }
-
         if (isset($this->data['settings_general']['langmark_widget_status']) && $this->data['settings_general']['langmark_widget_status']) {
 		    $this->data['langmark_template'] = 'agoo/langmark/langmark.tpl';
 		    $this->language->load('agoo/langmark/langmark');
@@ -50,7 +46,7 @@ class ControllerAgooLangmarkLangmark extends Controller
 			} else {
 				$pagination_prefix = 'page';
 			}
-		 	$file = DIR_APPLICATION.'controller/record/pagination.php';
+		 	$file	= DIR_APPLICATION.'controller/record/pagination.php';
 			require_once($file);
 
 			if (SC_VERSION > 15) {
@@ -124,35 +120,27 @@ class ControllerAgooLangmarkLangmark extends Controller
 	private function langmark_widget($data)
 	{
 		$this->data = $data;
-		$this->data['html'] = '';
-		if (isset($this->data['settingswidget']['html'][$this->config->get('config_language_id')])) {
-			$this->data['html'] = html_entity_decode($this->data['settingswidget']['html'][$this->config->get('config_language_id')], ENT_QUOTES, 'UTF-8');
+		$this->data['html'] = html_entity_decode($this->data['settingswidget']['html'][$this->config->get('config_language_id')], ENT_QUOTES, 'UTF-8');
+		$html_name          = "html." . md5(serialize($this->data['settingswidget'])) . "." . $this->config->get('config_language_id') . ".php";
+		$file               = DIR_CACHE . $html_name;
+
+	    $this->deletecache('html');
+		if (!file_exists($file) || (isset($this->data['settings_general']['cache_widgets']) && !$this->data['settings_general']['cache_widgets'])) {
+			$handle = fopen($file, 'w');
+			fwrite($handle, $this->data['html']);
+			fclose($handle);
 		}
 
-		if ($this->data['html'] != '') {
+		if (file_exists($file)) {
+		$this->data['mark'] = "Mark";
+		    extract($this->data);
+			ob_start();
+			require($file);
+			$this->output = ob_get_contents();
+			ob_end_clean();
+		}
 
-			$html_name          = "langmarkwidget." . md5(serialize($this->data['settingswidget'])) . "." . $this->config->get('config_language_id').".".(int) $this->config->get('config_store_id') . ".php";
-			$file               = DIR_CACHE . $html_name;
-
-		    $this->deletecache('langmarkwidget');
-			if (!file_exists($file) || (isset($this->data['settings_general']['cache_widgets']) && !$this->data['settings_general']['cache_widgets'])) {
-				$handle = fopen($file, 'w');
-				fwrite($handle, $this->data['html']);
-				fclose($handle);
-			}
-
-			if (file_exists($file)) {
-				$this->data['mark'] = "Mark";
-			    extract($this->data);
-				ob_start();
-				require($file);
-				$this->output = ob_get_contents();
-				ob_end_clean();
-			}
-
-
-			$this->data['html'] = $this->output;
-        }
+		$this->data['html'] = $this->output;
 
 		if (isset($this->data['settingswidget']['title_list_latest'][$this->config->get('config_language_id')]))
 			$this->data['heading_title'] = $this->data['settingswidget']['title_list_latest'][$this->config->get('config_language_id')];

@@ -36,8 +36,8 @@ class agooLanguage extends Controller
 		$this->registry->set('language', $this_language);
         unset($this_language);
 
-        if ($name == "load") {
-	        $seocms_folder = substr($params[0], 0, strpos($params[0], '/'));
+        if ($name == "load") {
+	        $seocms_folder = substr($params[0], 0, strpos($params[0], '/'));
 			if (isset($this->session->data['language'])) {
 				$current_lang = $this->session->data['language'];
 			} else {

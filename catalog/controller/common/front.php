@@ -35,14 +35,6 @@ class ControllerCommonFront extends Controller
 
 		}
 
-
-		if (isset($settings_general['seocms_url_alter']) && $settings_general['seocms_url_alter']) {
-			$this->registry->set('seocms_url_alter', true);
-		} else {
-			$this->registry->set('seocms_url_alter', false);
-		}
-
-
 		if (!class_exists('ModelToolImage')) {
 			$this->load->model('tool/image');
 		}

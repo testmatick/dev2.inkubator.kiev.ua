@@ -18,13 +18,13 @@ class ControllerProductCategory extends Controller {
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
-			$sort = 'p.sort_order';
+			$sort = 'rating';
 		}
 
 		if (isset($this->request->get['order'])) {
 			$order = $this->request->get['order'];
 		} else {
-			$order = 'ASC';
+			$order = 'DESC';
 		}
 
 		if (isset($this->request->get['page'])) {
@@ -109,7 +109,7 @@ class ControllerProductCategory extends Controller {
 			$data['text_limit'] = $this->language->get('text_limit');
 			$data['text_sale'] = $this->language->get('text_sale');
 			$data['text_new_prod'] = $this->language->get('text_new_prod');
-			$data['text_quickview'] = $this->language->get('text_quickview');	
+			//$data['text_quickview'] = $this->language->get('text_quickview');	
 
 			$data['button_cart'] = $this->language->get('button_cart');
 			$data['button_wishlist'] = $this->language->get('button_wishlist');
@@ -227,7 +227,7 @@ class ControllerProductCategory extends Controller {
 					'thumb'       => $image,
 					'thumb_swap'  => $swapimage,
 					'newstart'    => $result['date_added'],
-					'quickview'   => $this->url->link('product/quickview', 'product_id=' . $result['product_id']),
+					//'quickview'   => $this->url->link('product/quickview', 'product_id=' . $result['product_id']),
 					'name'        => $result['name'],
 					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
 					'price'       => $price,
@@ -254,9 +254,12 @@ class ControllerProductCategory extends Controller {
 			$data['sorts'] = array();
 
 			$data['sorts'][] = array(
-				'text'  => $this->language->get('text_default'),
+				/*'text'  => $this->language->get('text_default'),
 				'value' => 'p.sort_order-ASC',
-				'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.sort_order&order=ASC' . $url)
+				'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.sort_order&order=ASC' . $url)*/
+					'text'  => $this->language->get('text_default'),
+					'value' => 'rating-DESC',
+					'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=rating&order=DESC' . $url)
 			);
 
 			$data['sorts'][] = array(
@@ -284,11 +287,11 @@ class ControllerProductCategory extends Controller {
 			);
 
 			if ($this->config->get('config_review_status')) {
-				$data['sorts'][] = array(
+				/*$data['sorts'][] = array(
 					'text'  => $this->language->get('text_rating_desc'),
 					'value' => 'rating-DESC',
 					'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=rating&order=DESC' . $url)
-				);
+				);*/
 
 				$data['sorts'][] = array(
 					'text'  => $this->language->get('text_rating_asc'),

@@ -4,7 +4,7 @@
             <?php echo htmlspecialchars_decode($moduleData['CustomPostCSS']); ?>
         </style>
 	<?php endif; ?>
-<div itemscope itemprop="blogPost" itemType="http://schema.org/BlogPosting" class="container">
+<div data-i32temscope_mdp data-i32temprop_mdp="blogPost" itemType="http://schema.org/BlogPosting" class="container">
 	<ul class="breadcrumb">
         <?php foreach ($breadcrumbs as $breadcrumb) { ?>
             <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
@@ -12,7 +12,7 @@
     </ul>
     <?php echo $content_top; ?>
     <div class="iblog-post-title">
-        <h2 itemprop="headline"><?php echo $heading_title; ?></h2>
+        <h2 data-i32temprop_mdp="headline"><?php echo $heading_title; ?></h2>
     </div>
 	<div class="row">
 		<?php echo $column_left; ?>
@@ -25,7 +25,7 @@
         <?php } ?>
         <div id="content" class="<?php echo $class; ?> iblog-post-info">
             <?php if ($thumb && isset($moduleData['MainImageEnabled']) && ($moduleData['MainImageEnabled']=='yes')) { ?>
-                <div class="iblog-post-image thumbnails"><a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="thumbnail"><img itemprop="image" src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a></div>
+                <div class="iblog-post-image thumbnails"><a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="thumbnail"><img data-i32temprop_mdp="image" src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a></div>
             <?php } ?>
             <div >
             <?php if(isset($categories) && !empty($categories)) { ?>
@@ -43,16 +43,16 @@
                     <?php } ?>
                     <div class="iblog-author-data">
                         <?php if($show_author == 1) { ?>
-                        	<strong><?php echo $text_author; ?></strong><span itemprop="author"><span itemscope itemtype="http://schema.org/Person"><span itemprop="name"><?php echo $author; ?></span></span></span> | 
+                        	<strong><?php echo $text_author; ?></strong><span data-i32temprop_mdp="author"><span data-i32temscope_mdp data-i32temtype_mdp="http://schema.org/Person"><span data-i32temprop_mdp="name"><?php echo $author; ?></span></span></span> | 
                         <?php } ?>    
-                        <strong><?php echo $text_date_created; ?></strong> <?php echo $date_created; ?> <meta itemprop="datePublished" content="<?php echo $date_created; ?>"/>
+                        <strong><?php echo $text_date_created; ?></strong> <?php echo $date_created; ?> <meta data-i32temprop_mdp="datePublished" content="<?php echo $date_created; ?>"/>
                     </div>
                 </div>
-                <div class="iblog-post-description" itemprop="articleBody">
+                <div class="iblog-post-description" data-i32temprop_mdp="articleBody">
                     <?php echo $body; ?>
                 </div>
                 <div class="iblog-post-keywords">
-					<span class="iblog-keywords-string"><?php echo $iblog_keywords; ?></span> <span itemprop="keywords">
+					<span class="iblog-keywords-string"><?php echo $iblog_keywords; ?></span> <span data-i32temprop_mdp="keywords">
                     	<?php if(is_array($keywords)) { foreach($keywords as $keyword) { ?>
                         	<a href="<?php echo $keyword['href']; ?>"><?php echo $keyword['name']; ?></a>, 
                          <?php } } else { echo $keywords; } ?>

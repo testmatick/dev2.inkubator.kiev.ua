@@ -2181,7 +2181,6 @@ if (!class_exists('ControllerModuleBlog')) {
 				$this->data['heading_title'] = '';
 			}
 			$page = 1;
-			$total_records = 0;
 			if (isset($settingswidget['number_per_widget']) && $settingswidget['number_per_widget'] != '') {
 				$limit = $settingswidget['number_per_widget'];
 			} else {
@@ -2232,10 +2231,8 @@ if (!class_exists('ControllerModuleBlog')) {
 			if (isset($this->data['request_get']['wlimit'])) {
 				$limit = $this->data['request_get']['wlimit'];
 			}
-			if (!isset($settingswidget['paging'])) {
+			if (!isset($settingswidget['paging']))
 				$settingswidget['paging'] = 0;
-			}
-
 			$data          = array(
 				'settings' => $settingswidget,
 				'filter_blogs' => $this->data['blogs'],
@@ -2245,7 +2242,6 @@ if (!class_exists('ControllerModuleBlog')) {
 				'start' => $settingswidget['paging'],
 				'limit' => $limit
 			);
-
 			$results       = false;
 			$total_records = false;
 			if ($type == 'latest') {
@@ -2270,12 +2266,10 @@ if (!class_exists('ControllerModuleBlog')) {
 				}
 			}
 			if ($type == 'related') {
-
 				$pointer_id  = false;
 				$blog_id     = false;
 				$category_id = false;
 				$related_id  = false;
-
 				if (isset($this->request->get['product_id']) && $pointer == 'product_id') {
 					$pointer_id = $this->request->get['product_id'];
 				}
@@ -2320,45 +2314,12 @@ if (!class_exists('ControllerModuleBlog')) {
 								}
 							}
 						}
-				}
+					}
 
-
-
-				if (isset($this->request->get['record_id']) && $pointer == 'record_id_date') {
-					$pointer_id = $this->request->get['record_id'];
-				}
 
 
 				if ($pointer_id) {
-
-					if ($pointer != 'record_id_date') {
-						$this->data['related'] = $this->model_record_record->getRelatedRecords($pointer_id, $data, $pointer);
-					}
-
-					if ($pointer == 'record_id_date') {
-                    	if (isset($settingswidget['related_date_compare_main']) && $settingswidget['related_date_compare_main'])  {
-                    		$data['blog_id'] = $this->model_record_record->getBlogMainByRecord($pointer_id);
-                    		$data['blog_main'] = true;
-                    	} else {
-                    		$data['blog_id'] = $this->model_record_record->getRecordCategories($pointer_id);
-                    		$data['blog_main'] = false;
-                    	}
-
-                    	$data['record_data'] = $this->model_record_record->getRecord($pointer_id);
-
-                    	if (isset($settingswidget['related_date_compare_str']))  {
-                    		if ($settingswidget['related_date_compare_str']) {
-                    			$data['related_date_compare_str'] = '>';
-                    		} else {
-                    			$data['related_date_compare_str'] = '<';
-                    		}
-                    	} else {
-                    		$data['related_date_compare_str'] = '<';
-                    	}
-
-                    	$this->data['related'] = $this->model_record_record->getRelatedRecordsDate($pointer_id, $data, $pointer);
-					}
-
+					$this->data['related'] = $this->model_record_record->getRelatedRecords($pointer_id, $data, $pointer);
 					foreach ($this->data['related'] as $nm => $res) {
 						$total_records = $res['total'];
 					}
@@ -2371,7 +2332,6 @@ if (!class_exists('ControllerModuleBlog')) {
 						}
 					}
 				}
-
 			}
 
 

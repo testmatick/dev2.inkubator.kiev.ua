@@ -8,8 +8,6 @@ class ControllerModuleLatest extends Controller {
 		$data['text_tax'] = $this->language->get('text_tax');
 		$data['text_sale'] = $this->language->get('text_sale');
 		$data['text_new_prod'] = $this->language->get('text_new_prod');
-		$data['text_quickview'] = $this->language->get('text_quickview');
-
 		$data['button_cart'] = $this->language->get('button_cart');
 		$data['button_wishlist'] = $this->language->get('button_wishlist');
 		$data['button_compare'] = $this->language->get('button_compare');
@@ -73,7 +71,6 @@ class ControllerModuleLatest extends Controller {
 					'thumb'       => $image,
 					'thumb_swap'  => $swapimage,
 					'newstart'    => $result['date_added'],
-					'quickview'   => $this->url->link('product/quickview', 'product_id=' . $result['product_id']),
 					'name'        => $result['name'],
 					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
 					'price'       => $price,

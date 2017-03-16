@@ -18,12 +18,12 @@ class ControllerAgooLatestLatest extends Controller
         $widget_css_flag = false;
 
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/agootemplates/stylesheet/'.$this->widget_type.'/'.$this->widget_type.'css.tpl')) {
-			$this->template = $this->config->get('config_template') . '/template/agootemplates/stylesheet/'.$this->widget_type.'/'.$this->widget_type.'css.tpl';
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/agootemplates/stylesheet/'.$this->widget_type.'/'.$this->widget_type.'.css.tpl')) {
+			$this->template = $this->config->get('config_template') . '/template/agootemplates/stylesheet/'.$this->widget_type.'/'.$this->widget_type.'.css.tpl';
 			$widget_tpl_flag = true;
 		} else {
-			if (file_exists(DIR_TEMPLATE . 'default/template/agootemplates/stylesheet/'.$this->widget_type.'/'.$this->widget_type.'css.tpl')) {
-				$this->template = 'default/template/agootemplates/stylesheet/'.$this->widget_type.'/'.$this->widget_type.'css.tpl';
+			if (file_exists(DIR_TEMPLATE . 'default/template/agootemplates/stylesheet/'.$this->widget_type.'/'.$this->widget_type.'.css.tpl')) {
+				$this->template = 'default/template/agootemplates/stylesheet/'.$this->widget_type.'/'.$this->widget_type.'.css.tpl';
 				$widget_tpl_flag = true;
 			}
 		}

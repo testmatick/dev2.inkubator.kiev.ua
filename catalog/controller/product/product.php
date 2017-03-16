@@ -514,7 +514,7 @@ class ControllerProductProduct extends Controller {
 					'thumb'       => $image,
 					'thumb_swap'  => $swapimage,
 					'newstart'    => $result['date_added'],
-					'quickview'   => $this->url->link('product/quickview', 'product_id=' . $result['product_id']),
+					//'quickview'   => $this->url->link('product/quickview', 'product_id=' . $result['product_id']),
 					'name'        => $result['name'],
 					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
 					'price'       => $price,

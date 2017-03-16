@@ -34,12 +34,12 @@ class agooRequest extends Controller
 		$this->registry->set('request', $this_request);
 
 
-        if (strtolower($name) == 'get' && ($this->registry->get('sc_router') == 'record/blog' || $this->registry->get('sc_router') == 'record/record')) {
+        if (strtolower($name) == 'get' && ($this->registry->get('sc_router') == 'record/blog' || $this->registry->get('sc_router') == 'record/record')) {
         }
 
 		return $modules;
 	}
-    public function get($name) {
+    public function get($name) {
     }
 }
 

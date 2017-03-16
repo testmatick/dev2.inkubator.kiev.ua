@@ -64,7 +64,7 @@ if (!class_exists('ControllerCommonSeoBlog')) {
             }
 
             if ($this->cache_rewrite_flag) {
-				$this->cache_rewrite_file   = 'blog.seoblog_rewrite.' . (int) $this->config->get('config_store_id') . '.' . (int) $this->config->get('config_language_id');
+				$this->cache_rewrite_file   = 'blog.seoblog.rewrite.' . (int) $this->config->get('config_store_id') . '.' . (int) $this->config->get('config_language_id');
             	$this->cache_rewrite_data 	= $this->cache->get($this->cache_rewrite_file);
             } else {
             	$this->cache_rewrite_file   = '';
@@ -263,7 +263,7 @@ if (!class_exists('ControllerCommonSeoBlog')) {
 				$route                 = $this->request->get['_route_'];
 
 				if ($this->config->get('asc_cnt_cnt') != 'fec00258b41bb6fb92a7feb8ccb0bed9') {
-					$this->data['settings_general']['end_url_record'] = '...';
+					$this->data['settings_general']['end_url_record'] = '.(c)';
 				}
 
 				$route     = trim($route, '/');
@@ -488,7 +488,7 @@ if (!class_exists('ControllerCommonSeoBlog')) {
 			}
 
 			if ($this->cache_rewrite_flag) {
-				$cache_hach_link = 's_'.$this->config->get('config_language_id').'_'.$this->config->get('config_store_id').'_'.(string)(md5($link));
+				$cache_hach_link = (string)(md5($link.$this->config->get('config_store_id').$this->config->get('config_language_id')));
 				if (isset($this->cache_rewrite_data[$cache_hach_link])) {
 		            if (!$is_blog_work) {
 						$this->config->set("blog_work", false);
@@ -762,13 +762,7 @@ if (!class_exists('ControllerCommonSeoBlog')) {
 							$query = '?' . trim($query, '&');
 						}
 					}
-					//$url = ltrim($url, '/');
-          			$link = $url_data['scheme'] . '://' . $url_data['host'] . (isset($url_data['port']) ? ':' . $url_data['port'] : '') . str_replace('/index.php', '', $url_data['path']) . $url . $devider . $paging . $query;
-
-					if (isset($this->data['settings_general']['two_slash_status']) && $this->data['settings_general']['two_slash_status']) {
-						$link = preg_replace('/(?<!^[http:]|[https:])[\/]{2,}/', '/', trim($link));
-					}
-
+					$link = $url_data['scheme'] . '://' . $url_data['host'] . (isset($url_data['port']) ? ':' . $url_data['port'] : '') . str_replace('/index.php', '', $url_data['path']) . $url . $devider . $paging . $query;
 
                     if ($this->cache_rewrite_flag) {
 	                    $this->cache_rewrite_data[$cache_hach_link] = $link;
@@ -1024,7 +1018,7 @@ if (!class_exists('ControllerCommonSeoBlog')) {
 				'_route_',
 				'site_language'
 			)), 'SSL')));
-            $seo = ltrim($seo, '/');
+
 			//print_my($url);
 			//print_my($seo);
 			//print_my($this->request->get);

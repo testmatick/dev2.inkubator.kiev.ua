@@ -3614,3 +3614,21 @@ margin-right: -2.3em;
 .tab-content li,.content-padd{
 	text-transform:none;
 }
+#search_field{
+	margin:3em 0;
+}
+#search_field input{
+	border-left:1px solid #ddd;
+	border-top:1px solid #ddd;
+	border-bottom:1px solid #ddd;
+	border-radius:8px 0 0 8px;
+}
+
+#search_field .input-group-btn > .btn {
+    margin-left:0!important;
+    padding:12px 25px;
+    border-radius:0;
+}
+#search_field .btn-default{
+	border-radius:0 8px 8px 0!important;
+}
